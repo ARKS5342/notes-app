@@ -5,7 +5,7 @@ const User = require('../models/user');
 const router = express.Router();
 
 router.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('signup', { error: null }); // ✅ Error pass ho raha hai EJS me
 });
 
 router.post('/signup', async (req, res) => {
