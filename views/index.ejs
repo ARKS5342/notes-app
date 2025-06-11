@@ -1,37 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen p-6">
+
   <!-- Logout Button -->
-  <a href="/logout" style="position: absolute; top: 20px; right: 20px; background: #e74c3c; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">
-    Logout
-  </a>
+  <div class="flex justify-end">
+    <a href="/logout" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+      Logout
+    </a>
+  </div>
 
-  <h1>Your Notes</h1>
+  <div class="max-w-3xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">📝 Your Notes</h1>
 
-  <% if (notes.length === 0) { %>
-    <p>No notes yet</p>
-  <% } else { %>
-    <ul>
-      <% notes.forEach(note => { %>
-        <li>
-          <strong><%= note.title %></strong>: <%= note.content %>
-          <a href="/edit/<%= note._id %>">Edit</a>
-          <form action="/delete/<%= note._id %>" method="POST" style="display:inline;">
-            <button type="submit">Delete</button>
-          </form>
-        </li>
-      <% }) %>
-    </ul>
-  <% } %>
+    <% if (notes.length === 0) { %>
+      <p class="text-center text-gray-500 mb-6">No notes yet</p>
+    <% } else { %>
+      <ul class="space-y-4 mb-6">
+        <% notes.forEach(note => { %>
+          <li class="bg-gray-50 p-4 rounded shadow">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="text-lg font-semibold text-gray-800"><%= note.title %></h3>
+              <div class="space-x-2">
+                <a href="/edit/<%= note._id %>" class="text-blue-600 hover:underline">Edit</a>
+                <form action="/delete/<%= note._id %>" method="POST" class="inline">
+                  <button type="submit" class="text-red-600 hover:underline">Delete</button>
+                </form>
+              </div>
+            </div>
+            <p class="text-gray-700"><%= note.content %></p>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
 
-  <h2>Add a New Note</h2>
-  <form action="/add" method="POST">
-    <input type="text" name="title" placeholder="Note Title" required><br><br>
-    <textarea name="content" placeholder="Note Content" rows="4" cols="50" required></textarea><br><br>
-    <button type="submit">Add Note</button>
-  </form>
+    <h2 class="text-xl font-bold text-gray-800 mb-4">➕ Add a New Note</h2>
+    <form action="/add" method="POST" class="space-y-4">
+      <input
+        type="text"
+        name="title"
+        placeholder="Note Title"
+        required
+        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <textarea
+        name="content"
+        placeholder="Note Content"
+        rows="4"
+        required
+        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      ></textarea>
+      <button
+        type="submit"
+        class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded"
+      >
+        Add Note
+      </button>
+    </form>
+  </div>
 </body>
 </html>
