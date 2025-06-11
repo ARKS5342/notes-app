@@ -1,0 +1,26 @@
+body {
+    font-family: Arial;
+    padding: 20px;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+input, textarea {
+    width: 300px;
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    padding: 10px;
+    background: #f0f0f0;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
